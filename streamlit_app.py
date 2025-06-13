@@ -1,5 +1,19 @@
 import streamlit as st
 
+# --- AUTHENTICATION ---
+if not st.user.is_logged_in:
+    st.button("Log in with Google", on_click=st.login)
+    st.stop()
+
+# Optional: Limit to a specific email
+allowed_email = "mprasadasce@gmail.com"
+if st.user.email != allowed_email:
+    st.error("Access denied: You are not authorized to view this app.")
+    st.stop()
+
+# --- APP CONTENT ---
+st.button("Log out", on_click=st.logout)
+
 st.title("Hello Streamlit-er 👋")
 st.markdown(
     """ 
